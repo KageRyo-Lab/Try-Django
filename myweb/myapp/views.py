@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from myapp.models import student
 from django.http import Http404
+from django.contrib import auth
 # from django.shortcuts import get_object_or_404, get_list_or_404 # 快捷函数
 
 # Create your views here.
@@ -57,3 +58,32 @@ def getAll(request):
     except:
         raise Http404("讀取錯誤")
     return render(request, 'listall.html', locals())
+
+def main(request):
+    pageTitle="子網頁繼承"
+    mainTitle="段落標題"
+    mainContent="段落內文"
+    artitle1={"aTitle":"文章標題","aContent":"文章1內文"}
+    artitle2={"aTitle":"文章標題","aContent":"文章2內文"}
+    artitles=[artitle1, artitle2]
+    return render(request, 'index.html', locals())
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    elif request.method == 'POST':
+        uName = request.POST.get('uName') # login.html 傳來的變數
+        uPass = request.POST.get('uPass') # login.html 傳來的變數
+        # 直接判斷帳密有效性
+        # if uName=='Peter' and uPass=='591026':
+        #     return HttpResponse("已登入")
+        # else:
+        #     return redirect('/login/')
+        
+        # 以 Django 內建的管理者帳密判斷有效性
+        user = auth.authenticate(username=uName, password=uPass)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponse("已登入")
+        else:
+            return redirect('/login/')

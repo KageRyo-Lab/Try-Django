@@ -20,12 +20,13 @@ from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.main),
     path('hi/<username>/', views.hiname),      # 傳遞字串參數 username
     path('age/<int:year>/', views.age),        # 傳遞數值參數 year
     path('hello/', views.hello_view),
     path('getName/<username>/', views.getOneByName), # 傳遞字串參數 username
     path('getAll/', views.getAll),
+    path('login/', views.login),
     # path(r'^admin/', admin.site.urls),
     # path(r'^$', sayhello),
 ]
