@@ -23,6 +23,12 @@
     <h2>人員清單</h2>
     {% if persons %}
     <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Age</th>
+        </tr>
+        <caption>Person Information</caption>
     {% for person in persons %}
         <tr>
             <td>{{person.name}}</td>
