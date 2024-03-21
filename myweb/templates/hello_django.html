@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,39 +9,42 @@
     {% load static %}
     <link href="{% static 'css/style.css'%}" rel="stylesheet">
 </head>
+
 <body>
     <h1>{{data}}</h1>
     <h2>季統計</h2>
     {% if seasons %}
-        <ul>
+    <ul>
         {% for i in seasons %}
-            <li>{{i}}</li>
+        <li>{{i}}</li>
         {% endfor %}
-        </ul>
+    </ul>
     {% else %}
-        <p>沒有資料</p>
+    <p>沒有資料</p>
     {% endif %}
     <h2>人員清單</h2>
     {% if persons %}
     <table border="1">
+        <caption>This table displays person information</caption>
         <tr>
             <th>Name</th>
             <th>Phone</th>
             <th>Age</th>
         </tr>
         <caption>Person Information</caption>
-    {% for person in persons %}
+        {% for person in persons %}
         <tr>
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
             <td>{{person.age}}</td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </table>
     {% else %}
-        <p>沒有資料</p>
+    <p>沒有資料</p>
     {% endif %}
     <img src="{% static 'images/py-django.png' %}" alt="python/django">
     <p>現在時刻：<span class="info">{{now}}</span></p>
 </body>
+
 </html>
